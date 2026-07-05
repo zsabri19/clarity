@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClarityOS · Free Diagnostic — 5 Signs Your Organization Has a Clarity Problem</title>
+  <meta name="description" content="Take the free one-page diagnostic from Zeeshan Sabri. Discover if decision latency, role ambiguity, or authority confusion is blocking your organization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0f;
+      color: #e4e4ed;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3 { font-weight: 700; line-height: 1.2; }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8888cc;
+      margin-bottom: 0.75rem;
+    }
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(136, 136, 204, 0.12);
+      color: #8888cc;
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
+      border: 1px solid rgba(136, 136, 204, 0.2);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Container ── */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(100, 100, 200, 0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(160, 120, 255, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #6666aa;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero .accent {
+      background: linear-gradient(135deg, #8888cc, #a078ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero h2 {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 500;
+      color: #9999bb;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #6666cc, #8855ee);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(102, 102, 204, 0.35);
+    }
+
+    /* ── Diagnostic Signs ── */
+    .diagnostic { padding: 5rem 0 3rem; }
+    .diagnostic-header { margin-bottom: 3rem; }
+    .diagnostic-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .diagnostic-header p { color: #9999bb; font-size: 1.05rem; }
+
+    .sign {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 2rem 2rem 2rem 3rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .sign:hover {
+      border-color: rgba(136, 136, 204, 0.3);
+      background: linear-gradient(135deg, rgba(136, 136, 204, 0.06) 0%, rgba(136, 136, 204, 0.02) 100%);
+    }
+    .sign-number {
+      position: absolute;
+      left: 1rem;
+      top: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #6666cc;
+    }
+    .sign h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .sign p {
+      font-size: 0.92rem;
+      color: #aaaabb;
+      line-height: 1.7;
+    }
+
+    /* ── Transition ── */
+    .transition {
+      text-align: center;
+      padding: 4rem 0;
+      position: relative;
+    }
+    .transition::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 3rem;
+      background: linear-gradient(to bottom, transparent, rgba(136, 136, 204, 0.3));
+    }
+    .transition p {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ccccee;
+      max-width: 550px;
+      margin: 0 auto 0.5rem;
+    }
+    .transition .sub {
+      font-size: 0.92rem;
+      color: #8888aa;
+      font-weight: 400;
+    }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      padding: 4rem 0 5rem;
+      text-align: center;
+    }
+    .cta-card {
+      background: linear-gradient(135deg, rgba(102, 102, 204, 0.08) 0%, rgba(136, 136, 204, 0.04) 100%);
+      border: 1px solid rgba(136, 136, 204, 0.15);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-card h3 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .cta-card p {
+      color: #9999bb;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #6666cc, #8855ee);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 1.1rem 2.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(102, 102, 204, 0.35);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem 0 3rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    footer p {
+      font-size: 0.8rem;
+      color: #555577;
+    }
+    footer a {
+      color: #7777aa;
+      text-decoration: none;
+    }
+    footer a:hover { color: #9999cc; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: fadeUp 0.6s ease forwards;
+      opacity: 0;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .sign { padding: 1.5rem 1.5rem 1.5rem 2.5rem; }
+      .sign-number { left: 0.75rem; top: 1.5rem; }
+      .cta-card { padding: 2rem 1.5rem; }
+      .hero { min-height: auto; padding: 3rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-label animate-in">Free Diagnostic</div>
+      <h1 class="animate-in delay-1">
+        <span class="accent">5 Signs</span> Your Organization<br>Has a Clarity Problem
+      </h1>
+      <h2 class="animate-in delay-2">
+        A one-page diagnostic from Zeeshan Sabri, ClarityOS
+      </h2>
+      <a href="#diagnostic" class="hero-cta animate-in delay-3">
+        Take the Diagnostic →
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       DIAGNOSTIC SIGNS
+  ════════════════════════════════════════════════ -->
+  <section class="diagnostic" id="diagnostic">
+    <div class="container">
+      <div class="diagnostic-header">
+        <div class="badge">Diagnostic</div>
+        <h2>The 5 Signs</h2>
+        <p>Rate each one honestly. If any resonate, you already know where to start.</p>
+      </div>
+
+      <!-- Sign 01 -->
+      <div class="sign">
+        <span class="sign-number">01</span>
+        <h3>Decision Latency</h3>
+        <p>How long does it take between a decision being made and action being taken? If the gap exceeds 48 hours for anything under $100K, clarity is not installed.</p>
+      </div>
+
+      <!-- Sign 02 -->
+      <div class="sign">
+        <span class="sign-number">02</span>
+        <h3>Role Ambiguity</h3>
+        <p>Ask any three people in your org: "Who owns X?" If you get three different answers, you do not have an execution problem. You have a clarity problem.</p>
+      </div>
+
+      <!-- Sign 03 -->
+      <div class="sign">
+        <span class="sign-number">03</span>
+        <h3>Signal Overload</h3>
+        <p>How many priorities does each person carry? More than three means nothing is actually a priority. Signal overload is the first symptom of a missing decision architecture.</p>
+      </div>
+
+      <!-- Sign 04 -->
+      <div class="sign">
+        <span class="sign-number">04</span>
+        <h3>Recurring Firefighting</h3>
+        <p>The same crisis surfaces every quarter. Same type of fire. Same cast of heroes. That is not bad luck. That is a structural gap masked as urgency.</p>
+      </div>
+
+      <!-- Sign 05 -->
+      <div class="sign">
+        <span class="sign-number">05</span>
+        <h3>Authority Confusion</h3>
+        <p>When pressure hits, who decides? If the answer changes depending on who is in the room, your governance is not real. Authority confusion is the number one cause of transformation stalling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       TRANSITION
+  ════════════════════════════════════════════════ -->
+  <div class="container">
+    <div class="transition">
+      <p>One or more of these feel familiar?</p>
+      <p class="sub">That is not a strategy gap. That is a <strong style="color:#ccccee;">clarity gap</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       CTA
+  ════════════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h3>Let's fix the operating system underneath.</h3>
+        <p>
+          ClarityOS fixes the operating system underneath. Book a free 15-minute diagnostic call and I will tell you which of the five is the real blocker in your org.
+        </p>
+        <a href="mailto:clarityos@global-mkts.com?subject=Free%20Diagnostic%20Call&body=I%20completed%20the%205%20Signs%20diagnostic%20and%20want%20to%20discuss%20my%20results." class="cta-button">
+          Book Your Free Diagnostic →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <p>
+        Zeeshan Sabri · <a href="https://clarity-os.com" target="_blank">ClarityOS</a> · Free Diagnostic<br>
+        <a href="mailto:clarityos@global-mkts.com">clarityos@global-mkts.com</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════
+       SOFIA CLARITYOS CONCIERGE WIDGET
+  ════════════════════════════════════════════════ -->
+  <script src="https://lasio.ai/widget.js?id=141&api_key=wk_3c4b2b9c733c09add3e0dace740868b6e63aae48aa2df360f71d940cace38738"></script>
+
+</body>
+</html>
