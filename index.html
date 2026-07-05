@@ -10,6 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ── Reset & Base ── */
+:root {
+      --bg: #0a0a0f;
+      --text: #e4e4ed;
+      --text-dim: #9999bb;
+      --text-muted: #8888cc;
+      --accent: #6666cc;
+      --accent-light: #8855ee;
+      --border: rgba(136,136,204,0.15);
+      --card-bg: rgba(255,255,255,0.02);
+      --error: #ff6b6b;
+      --success: #6bcb6b;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -232,6 +244,212 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(102, 102, 204, 0.35);
     }
+    .cta-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── Download Form ── */
+    .download-form { margin-top: 1.5rem; }
+    .form-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .form-input {
+      flex: 1;
+      min-width: 240px;
+      max-width: 340px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(136,136,204,0.15);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #e4e4ed;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .form-input::placeholder { color: #555577; }
+    .form-input:focus { border-color: #6666cc; }
+    .form-note {
+      font-size: 0.75rem;
+      color: #555577;
+      margin-top: 0.75rem;
+    }
+    .form-status {
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      min-height: 1.5rem;
+    }
+    .form-status.success { color: #6bcb6b; }
+    .form-status.error { color: #ff6b6b; }
+
+    /* ── Mirror Call Section ── */
+    .mirror-section {
+      padding: 5rem 0;
+      position: relative;
+    }
+    .mirror-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 3rem;
+      background: linear-gradient(to bottom, transparent, rgba(136, 136, 204, 0.3));
+    }
+    .mirror-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+    .mirror-info {}
+    .mirror-info h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .mirror-info p {
+      color: #9999bb;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .mirror-info ul {
+      list-style: none;
+      padding: 0;
+    }
+    .mirror-info ul li {
+      color: #aaaabb;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .mirror-info ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #6666cc;
+    }
+    .mirror-price {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #6666cc, #8855ee);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin: 0.75rem 0 1.25rem;
+    }
+
+    /* ── Booking Card ── */
+    .booking-card {
+      background: linear-gradient(135deg, rgba(102,102,204,0.08) 0%, rgba(136,136,204,0.04) 100%);
+      border: 1px solid rgba(136,136,204,0.15);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+    }
+    .booking-card h4 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .booking-step {
+      display: none;
+    }
+    .booking-step.active { display: block; }
+
+    /* Step 1: Stripe CTA */
+    .stripe-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(135deg, #6666cc, #8855ee);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 1.1rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .stripe-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(102, 102, 204, 0.35);
+    }
+    .stripe-btn .small { display: block; font-size: 0.75rem; font-weight: 400; opacity: 0.8; margin-top: 0.25rem; }
+
+    /* Step 2: Date/Time Picker */
+    .cal-input-group {
+      margin-bottom: 1rem;
+    }
+    .cal-input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: #8888cc;
+      margin-bottom: 0.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .cal-input-group input,
+    .cal-input-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(136,136,204,0.15);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #e4e4ed;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .cal-input-group input:focus,
+    .cal-input-group select:focus { border-color: #6666cc; }
+    .cal-input-group select option { background: #1a1a2e; color: #e4e4ed; }
+    .book-submit {
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(135deg, #6666cc, #8855ee);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    .book-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(102, 102, 204, 0.35);
+    }
+    .book-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .booking-status {
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      text-align: center;
+      min-height: 1.5rem;
+    }
+    .booking-status.success { color: #6bcb6b; }
+    .booking-status.error { color: #ff6b6b; }
+    .booking-status.info { color: #8888cc; }
 
     /* ── Footer ── */
     footer {
@@ -270,6 +488,10 @@
       .sign-number { left: 0.75rem; top: 1.5rem; }
       .cta-card { padding: 2rem 1.5rem; }
       .hero { min-height: auto; padding: 3rem 0; }
+      .mirror-grid { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
+      .form-input { min-width: 100%; max-width: 100%; }
+      .booking-card { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -361,9 +583,113 @@
         <p>
           ClarityOS fixes the operating system underneath. Book a free 15-minute diagnostic call and I will tell you which of the five is the real blocker in your org.
         </p>
-        <a href="mailto:clarityos@global-mkts.com?subject=Free%20Diagnostic%20Call&body=I%20completed%20the%205%20Signs%20diagnostic%20and%20want%20to%20discuss%20my%20results." class="cta-button">
-          Book Your Free Diagnostic →
-        </a>
+        <form id="download-form" class="download-form">
+          <div class="form-row">
+            <input type="email" id="email-input" placeholder="Enter your email" required class="form-input" autocomplete="email">
+            <button type="submit" id="download-btn" class="cta-button">
+              Download Your One-Pager →
+            </button>
+          </div>
+          <p class="form-note">No spam. I'll send you the one-pager and maybe a thoughtful follow-up.</p>
+          <div id="form-status" class="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       MIRROR CALL
+  ════════════════════════════════════════════════ -->
+  <section class="mirror-section" id="mirror-call">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="badge">ClarityOS Mirror Call</div>
+        <h2 style="font-size: clamp(1.6rem, 4vw, 2.4rem); color: #fff; margin-bottom: 0.75rem;">
+          Get Your Own <span class="accent">Executive Assistant</span>
+        </h2>
+        <p style="color: #9999bb; font-size: 1.05rem; max-width: 520px; margin: 0 auto;">
+          A one-hour session where we map your organization's decision architecture — then build you a personalized ClarityOS Executive Assistant that runs on your operating system.
+        </p>
+      </div>
+
+      <div class="mirror-grid">
+        <!-- Left: Info -->
+        <div class="mirror-info">
+          <h3>What you get</h3>
+          <ul>
+            <li>A complete diagnostic of your current decision architecture</li>
+            <li>Your #1 clarity blocker identified with precision</li>
+            <li>A personalized ClarityOS Executive Assistant built for your org</li>
+            <li>Governance protocols installed — not theory, working code</li>
+            <li>Follow-up report with implementation roadmap</li>
+          </ul>
+          <div class="mirror-price">One-time investment · $497</div>
+          <p style="font-size:0.85rem;">
+            This is not coaching. This is an operating system upgrade for your organization. You leave with an AI-native Executive Assistant that enforces clarity across decisions, roles, and governance.
+          </p>
+        </div>
+
+        <!-- Right: Booking Card -->
+        <div class="booking-card">
+          <h4>Book Your Mirror Call</h4>
+
+          <!-- Step 1: Stripe Payment -->
+          <div class="booking-step active" id="booking-step-1">
+            <p style="color:#9999bb; font-size:0.85rem; margin-bottom:1.5rem; text-align:center;">
+              Secure payment via Stripe. Your session is confirmed once the payment is processed.
+            </p>
+            <a href="https://buy.stripe.com/00w28q41PdjveV2bfWcV201" target="_blank" class="stripe-btn" id="stripe-btn">
+              Pay $497 &amp; Book Your Mirror Call
+              <span class="small">Secure checkout powered by Stripe</span>
+            </a>
+            <p style="color:#555577; font-size:0.75rem; margin-top:1rem; text-align:center;">
+              After payment, you'll return here to select your preferred date and time.
+            </p>
+          </div>
+
+          <!-- Step 2: Date/Time Selection -->
+          <div class="booking-step" id="booking-step-2">
+            <div class="cal-input-group">
+              <label for="book-name">Your Name</label>
+              <input type="text" id="book-name" placeholder="Enter your name" autocomplete="name">
+            </div>
+            <div class="cal-input-group">
+              <label for="book-email">Email Address</label>
+              <input type="email" id="book-email" placeholder="Enter your email" required autocomplete="email">
+            </div>
+            <div class="cal-input-group">
+              <label for="book-phone">Phone (optional)</label>
+              <input type="tel" id="book-phone" placeholder="+971 XX XXX XXXX" autocomplete="tel">
+            </div>
+            <div class="cal-input-group">
+              <label for="book-date">Preferred Date</label>
+              <input type="date" id="book-date" min="">
+            </div>
+            <div class="cal-input-group">
+              <label for="book-time">Preferred Time</label>
+              <select id="book-time">
+                <option value="">Select a time slot</option>
+                <option value="09:00">09:00 — 10:00 (GCC morning)</option>
+                <option value="10:00">10:00 — 11:00</option>
+                <option value="11:00">11:00 — 12:00</option>
+                <option value="12:00">12:00 — 13:00</option>
+                <option value="14:00">14:00 — 15:00 (GCC afternoon)</option>
+                <option value="15:00">15:00 — 16:00</option>
+                <option value="16:00">16:00 — 17:00</option>
+                <option value="17:00">17:00 — 18:00</option>
+                <option value="18:00">18:00 — 19:00</option>
+                <option value="19:00">19:00 — 20:00</option>
+              </select>
+            </div>
+            <button type="button" class="book-submit" id="book-submit-btn">
+              Confirm Booking →
+            </button>
+            <div id="booking-status" class="booking-status"></div>
+            <p style="color:#555577; font-size:0.75rem; margin-top:0.75rem; text-align:center;">
+              You'll receive a confirmation email with a calendar invite and Google Meet link.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -379,6 +705,235 @@
       </p>
     </div>
   </footer>
+
+  <!-- ════════════════════════════════════════════
+       APP JAVASCRIPT
+  ════════════════════════════════════════════════ -->
+  <script>
+    // ── Lead Magnet: Email Capture + PDF Download ──
+    const form = document.getElementById('download-form');
+    const emailInput = document.getElementById('email-input');
+    const downloadBtn = document.getElementById('download-btn');
+    const formStatus = document.getElementById('form-status');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        if (!email) return;
+
+        downloadBtn.disabled = true;
+        downloadBtn.textContent = 'Sending...';
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+
+        try {
+          const res = await fetch('/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = 'Thanks! Downloading your one-pager...';
+
+            // Trigger PDF download in background
+            const link = document.createElement('a');
+            link.href = '/clarityos-diagnostic-one-pager.pdf';
+            link.download = 'ClarityOS-Diagnostic-One-Pager.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            downloadBtn.textContent = '✓ Sent & Downloading';
+            setTimeout(() => {
+              downloadBtn.disabled = false;
+              downloadBtn.textContent = 'Download Your One-Pager →';
+            }, 4000);
+          } else {
+            // Fallback: download directly even if API fails
+            formStatus.className = 'form-status info';
+            formStatus.textContent = 'Starting your download...';
+
+            const link = document.createElement('a');
+            link.href = '/clarityos-diagnostic-one-pager.pdf';
+            link.download = 'ClarityOS-Diagnostic-One-Pager.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            downloadBtn.disabled = false;
+            downloadBtn.textContent = 'Download Your One-Pager →';
+          }
+        } catch (err) {
+          // Network error — still offer the PDF
+          formStatus.className = 'form-status info';
+          formStatus.textContent = 'Network issue. Downloading directly...';
+
+          const link = document.createElement('a');
+          link.href = '/clarityos-diagnostic-one-pager.pdf';
+          link.download = 'ClarityOS-Diagnostic-One-Pager.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          downloadBtn.disabled = false;
+          downloadBtn.textContent = 'Download Your One-Pager →';
+        }
+      });
+    }
+
+    // ── Mirror Call: Stripe → Calendar Booking Flow ──
+    const stripeBtn = document.getElementById('stripe-btn');
+    const step1 = document.getElementById('booking-step-1');
+    const step2 = document.getElementById('booking-step-2');
+    const bookSubmitBtn = document.getElementById('book-submit-btn');
+    const bookName = document.getElementById('book-name');
+    const bookEmail = document.getElementById('book-email');
+    const bookPhone = document.getElementById('book-phone');
+    const bookDate = document.getElementById('book-date');
+    const bookTime = document.getElementById('book-time');
+    const bookingStatus = document.getElementById('booking-status');
+
+    // Set min date to tomorrow
+    if (bookDate) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      bookDate.min = tomorrow.toISOString().split('T')[0];
+      // Set default to tomorrow
+      bookDate.value = tomorrow.toISOString().split('T')[0];
+    }
+
+    // When Stripe button is clicked, open Stripe checkout in new tab
+    // After returning, show step 2
+    if (stripeBtn) {
+      stripeBtn.addEventListener('click', (e) => {
+        // Don't prevent default — let it open the Stripe link
+        // We'll detect return via a "I've paid" mechanism
+
+        // Store in sessionStorage that user initiated payment
+        sessionStorage.setItem('mirror-call-payment-started', 'true');
+      });
+    }
+
+    // After Stripe payment, user comes back. Manual "I've paid" trigger
+    // Add a subtle "Already paid?" link
+    const alreadyPaid = document.createElement('p');
+    alreadyPaid.style.cssText = 'text-align:center; margin-top:0.75rem;';
+    alreadyPaid.innerHTML = '<a href="#" id="already-paid-link" style="color:#6666cc; font-size:0.8rem; text-decoration:none;">Already paid? Click here to choose your time →</a>';
+
+    if (step1) {
+      // Insert after the "After payment" text
+      const afterText = step1.querySelector('p:last-child');
+      if (afterText) {
+        afterText.after(alreadyPaid);
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target.id === 'already-paid-link') {
+        e.preventDefault();
+        step1.classList.remove('active');
+        step2.classList.add('active');
+      }
+    });
+
+    // Date/Time validation: ensure selected date is >= tomorrow
+    if (bookDate) {
+      bookDate.addEventListener('change', () => {
+        const selected = new Date(bookDate.value);
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        if (selected < tomorrow) {
+          bookDate.value = tomorrow.toISOString().split('T')[0];
+        }
+      });
+    }
+
+    // Submit booking
+    if (bookSubmitBtn) {
+      bookSubmitBtn.addEventListener('click', async () => {
+        const name = bookName.value.trim();
+        const email = bookEmail.value.trim();
+        const phone = bookPhone.value.trim();
+        const date = bookDate.value;
+        const time = bookTime.value;
+
+        // Validate
+        if (!name) {
+          bookingStatus.className = 'booking-status error';
+          bookingStatus.textContent = 'Please enter your name.';
+          bookName.focus();
+          return;
+        }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          bookingStatus.className = 'booking-status error';
+          bookingStatus.textContent = 'Please enter a valid email address.';
+          bookEmail.focus();
+          return;
+        }
+        if (!date) {
+          bookingStatus.className = 'booking-status error';
+          bookingStatus.textContent = 'Please select a date.';
+          bookDate.focus();
+          return;
+        }
+        if (!time) {
+          bookingStatus.className = 'booking-status error';
+          bookingStatus.textContent = 'Please select a time slot.';
+          bookTime.focus();
+          return;
+        }
+
+        bookSubmitBtn.disabled = true;
+        bookSubmitBtn.textContent = 'Booking...';
+        bookingStatus.className = 'booking-status info';
+        bookingStatus.textContent = 'Submitting your booking...';
+
+        try {
+          const res = await fetch('/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name,
+              email,
+              phone,
+              date,
+              time,
+              timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+              stripeSessionId: sessionStorage.getItem('mirror-call-stripe-session') || 'completed',
+            }),
+          });
+
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            bookingStatus.className = 'booking-status success';
+            bookingStatus.textContent = '✓ Mirror Call booked! Check your email for confirmation and calendar invite.';
+
+            bookSubmitBtn.textContent = '✓ Booked!';
+
+            // Clear form
+            sessionStorage.removeItem('mirror-call-payment-started');
+          } else {
+            bookingStatus.className = 'booking-status error';
+            bookingStatus.textContent = data.error || 'Booking failed. Please try again.';
+            bookSubmitBtn.disabled = false;
+            bookSubmitBtn.textContent = 'Confirm Booking →';
+          }
+        } catch (err) {
+          bookingStatus.className = 'booking-status error';
+          bookingStatus.textContent = 'Network error. Please try again or email clarityos@global-mkts.com.';
+          bookSubmitBtn.disabled = false;
+          bookSubmitBtn.textContent = 'Confirm Booking →';
+        }
+      });
+    }
+  </script>
 
   <!-- ════════════════════════════════════════════
        SOFIA CLARITYOS CONCIERGE WIDGET
