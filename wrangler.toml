@@ -1,4 +1,4 @@
-name = "clarity-check"
+name = "clarity"
 compatibility_date = "2024-12-01"
 pages_build_output_dir = "dist"
 
@@ -8,7 +8,7 @@ id = "dabc9df247ef421090fa0adced9806ec"
 preview_id = "10d741dbeeac4a588c483a836e8d009a"
 
 [env.production]
-name = "clarity-check"
+name = "clarity"
 kv_namespaces = [
   { binding = "LEADS", id = "dabc9df247ef421090fa0adced9806ec" }
 ]
