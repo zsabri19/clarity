@@ -50,7 +50,7 @@ export async function onRequest(context) {
     console.log(`[LEAD] New lead captured: ${email}${name ? ` (${name})` : ''} from ${source || 'scorecard'} at ${new Date().toISOString()}`);
 
     const leadData = {
-      source: source || 'clarity-check-scorecard',
+      source: source || 'clarity-scorecard',
       type: 'lead-magnet',
       email: email,
       name: name || email.split('@')[0],
@@ -80,7 +80,7 @@ export async function onRequest(context) {
     try {
       const emailPayload = {
         personalizations: [{ to: [{ email: SOFIA_EMAIL }] }],
-        from: { email: 'noreply@clarity-check.global-mkts.com', name: 'ClarityOS Lead Capture' },
+        from: { email: 'noreply@clarity.global-mkts.com', name: 'ClarityOS Lead Capture' },
         subject: `New Lead: ${leadData.name} completed the Clarity Leak Scorecard`,
         content: [
           {
@@ -105,7 +105,7 @@ export async function onRequest(context) {
               ``,
               `---`,
               `ClarityOS Lead Capture`,
-              `https://clarity-check.global-mkts.com`,
+              `https://clarity.global-mkts.com`,
             ].join('\n'),
           },
         ],
